@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: web
+    build: frontend
+    image: shambhaveesrivastava12/frontend-repo
+    networks:
+      - object-detection
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+      - yolo5
+
+  yolo5:
+    container_name: yolo5
+    build: yolo5
+    networks:
+      - object-detection
+    image: shambhaveesrivastava12/yolo5-repo
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    ports:
+      - "8081:8081"
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+
+    networks:
+      - object-detection
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+      - ./mongo/data:/data/db
+
+  polybot:
+    container_name: polybot
+    image: shambhaveesrivastava12/polybot-repo
+    networks:
+      - object-detection
+    depends_on:
+      - yolo5
+
+
+volumes:
+  mongodb:
+    driver: local
+
+networks:
+  object-detection:
+    name: object-detection
+    driver: bridge

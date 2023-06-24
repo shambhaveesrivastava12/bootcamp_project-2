@@ -4,7 +4,7 @@ import os
 import requests
 from collections import Counter
 
-YOLO_URL = 'http://localhost:8081'
+YOLO_URL = f'http://yolo5:8081'
 
 
 class Bot:
@@ -74,14 +74,39 @@ class QuoteBot(Bot):
 
 
 class ObjectDetectionBot(Bot):
-    pass
+    def handle_message(self, message):
+        logger.info(f'Incoming message: {message}')
+
+        if self.is_current_msg_photo():
+            photo_path = self.download_user_photo()
+
+            # Send the photo to the YOLO service for object detection
+            res = requests.post(f'{YOLO_URL}/predict', files={
+                'file': (photo_path, open(photo_path, 'rb'), 'image/png')
+            })
+
+            if res.status_code == 200:
+                detections = res.json()
+                logger.info(f'response from detect service with {detections}')
+
+                # calc summary
+                element_counts = Counter([l['class'] for l in detections])
+                summary = 'Objects Detected:\n'
+                for element, count in element_counts.items():
+                    summary += f"{element}: {count}\n"
+
+                self.send_text(summary)
+
+            else:
+                self.send_text('Failed to perform object detection. Please try again later.')
+
+        else:
+            self.send_text('Please send a photo for object detection.')
 
 
 if __name__ == '__main__':
-    # TODO - in the 'polyBot' dir, create a file called .telegramToken and store your bot token there.
-    #  ADD THE .telegramToken FILE TO .gitignore, NEVER COMMIT IT!!!
     with open('.telegramToken') as f:
         _token = f.read()
 
-    my_bot = Bot(_token)
+    my_bot = ObjectDetectionBot(_token)
     my_bot.start()
