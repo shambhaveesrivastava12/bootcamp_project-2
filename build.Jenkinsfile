@@ -10,5 +10,7 @@ pipeline {
                 docker tag shambhavee-jenkins:{$BUILD_NUMBER} 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:{$BUILD_NUMBER}
                 docker push 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:{$BUILD_NUMBER}
                 '''
+            }
+        }
     }
 }
