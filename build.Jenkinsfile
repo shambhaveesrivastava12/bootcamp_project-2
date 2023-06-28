@@ -14,6 +14,7 @@ pipeline {
             steps {
 
                 sh '''
+                cd yolo5
                 docker build -t shambhavee-jenkins:$BUILD_TAG .
                 docker tag shambhavee-jenkins:$BUILD_TAG 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:$BUILD_TAG
                 '''
