@@ -5,8 +5,8 @@ pipeline {
         stage('ECR Authentication and Docker login') {
             steps {
                 sh '''
-                aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-east-2.amazonaws.com
-                '''
+                    aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-west-1.amazonaws.com                
+                   '''
             }
         }
                 stage('Build') {
@@ -15,12 +15,9 @@ pipeline {
 
                 sh '''
                 cd yolo5
-                docker build -t shambhavee-jenkins:$BUILD_TAG .
-                docker tag shambhavee-jenkins:$BUILD_TAG 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:$BUILD_TAG
+                docker build -t shambhavee-jenkins .
                 '''
-
             }
-
         }
 
 
@@ -29,7 +26,8 @@ pipeline {
             steps {
 
                 sh '''
-                docker push 854171615125.dkr.ecr.us-east-2.amazonaws.com/shambhavee-jenkins:$BUILD_TAG 
+                 docker tag shambhavee-jenkins:$BUILD_NUMBER 854171615125.dkr.ecr.us-west-1.amazonaws.com/shambhavee-jenkins:$BUILD_NUMBER
+                 docker push 854171615125.dkr.ecr.us-west-1.amazonaws.com/shambhavee-jenkins:$BUILD_NUMBER
                 '''
             }
 
