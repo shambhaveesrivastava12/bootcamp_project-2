@@ -22,6 +22,7 @@ pipeline {
             steps {
 
                 sh '''
+                    cd k8s
                     kubectl apply -f yolo5.yaml
                 '''
             }
