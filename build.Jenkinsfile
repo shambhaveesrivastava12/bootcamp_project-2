@@ -15,7 +15,7 @@ pipeline {
 
                 sh '''
                 cd yolo5
-                docker build -t shambhavee-jenkins .
+                docker build -t shambhavee-jenkins:$BUILD_NUMBER .
                 '''
             }
         }
