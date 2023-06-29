@@ -30,7 +30,6 @@ pipeline {
                  docker push 854171615125.dkr.ecr.us-west-1.amazonaws.com/shambhavee-jenkins:$BUILD_NUMBER
                 '''
             }
-
         }
     }
 }
