@@ -4,7 +4,7 @@ services:
   web:
     container_name: web
     build: frontend
-    image: shambhaveesrivastava12/frontend-repo
+    image: shambhaveesrivastava12/frontend-repo:cc-frontend
     networks:
       - object-detection
     ports:
@@ -18,11 +18,11 @@ services:
     build: yolo5
     networks:
       - object-detection
-    image: shambhaveesrivastava12/yolo5-repo
+    image: shambhaveesrivastava12/yolo5-repo:cc-yolo5
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - AWS_ACCESS_KEY_ID="AKIA4NYEYP6K67NH47FR"
+      - AWS_SECRET_ACCESS_KEY="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"
+      - AWS_DEFAULT_REGION="us-east-2"
     ports:
       - "8081:8081"
 
@@ -41,7 +41,7 @@ services:
 
   polybot:
     container_name: polybot
-    image: shambhaveesrivastava12/polybot-repo
+    image: shambhaveesrivastava12/polybotlatest_repo:cc-poly
     networks:
       - object-detection
     depends_on:
