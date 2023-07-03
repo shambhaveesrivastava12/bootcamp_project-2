@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                     cd k8s
-                    sh "/usr/local/bin/kubectl" apply -f yolo5.yaml
+                    kubectl apply -f yolo5.yaml
                 '''
             }
         }
