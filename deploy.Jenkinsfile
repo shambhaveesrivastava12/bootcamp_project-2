@@ -15,7 +15,7 @@ pipeline {
             steps {
                     sh '''
                         aws eks --region us-east-2 update-kubeconfig --name k8s-batch1
-                        kubectl config set-context --current --namespace=shambhavee-ns
+                        bin/kubectl/ config set-context --current --namespace=shambhavee-ns
                     '''
             }
         }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh '''
                     cd k8s
-                    kubectl apply -f yolo5.yaml
+                    /binkubectl apply -f yolo5.yaml
                 '''
             }
         }
