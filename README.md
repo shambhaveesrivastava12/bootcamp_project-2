@@ -208,5 +208,5 @@ Make sure the service is working as expected by communicating with it via the in
 
 ## Results
 
-<img src="out-img-1.png" alt="image1">
-<img src="output-image.png" alt="image2">
+<img src=".images/out-img-1.png" alt="image1">
+<img src=".images/output-image.png" alt="image2">
