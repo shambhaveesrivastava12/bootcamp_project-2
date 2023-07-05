@@ -207,5 +207,5 @@ Deploy your app in a single EC2 instance in a public subnet.
 Make sure the service is working as expected by communicating with it via the instance's public IP.
 
 ### Result-
-<img src="out-img-1.png" alt="output-image1">
-<img src="output-image.png" alt="output-image2">
+<img src="out-img-1.png" alt="image1">
+<img src="output-image.png" alt="image2">
