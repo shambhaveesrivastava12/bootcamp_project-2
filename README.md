@@ -206,6 +206,7 @@ Push the `frontend`, `yolo5` and `polybot` to your account in Dockerhub.
 Deploy your app in a single EC2 instance in a public subnet.
 Make sure the service is working as expected by communicating with it via the instance's public IP.
 
-### Result-
+## Results
+
 <img src="out-img-1.png" alt="image1">
 <img src="output-image.png" alt="image2">
