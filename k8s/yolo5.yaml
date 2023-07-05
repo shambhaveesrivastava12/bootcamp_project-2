@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-yolo5-app
-        image: 854171615125.dkr.ecr.us-west-1.amazonaws.com/shambhavee-jenkins:$BUILD_NUMBER
+        image: 854171615125.dkr.ecr.us-west-1.amazonaws.com/shambhavee-jenkins:latest
         ports:
         - containerPort: 8081
 
