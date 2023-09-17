@@ -210,3 +210,4 @@ Make sure the service is working as expected by communicating with it via the in
 
 <img src=".images/out-img-1.png" alt="image1">
 <img src=".images/output-image.png" alt="image2">
+<img src=".images/Screenshot 2023-09-17 161849.png" alt="image3">
